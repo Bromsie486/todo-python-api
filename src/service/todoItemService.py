@@ -3,8 +3,10 @@ import uuid
 import datetime
 import service.keywordFilterService as keywordFilterService
 
+
 def getAllTodoItems():
     return todoStore.getTodos()
+
 
 def createNewTodoItem(input):
     if "title" not in input:
@@ -19,6 +21,7 @@ def createNewTodoItem(input):
         keywordFilterService.checkForBlackListedWords(input["description"])
     todoStore.addTodoItem(todoItem)
     pass
+
 
 def deleteTodoItem(input):
     if "id" not in input:

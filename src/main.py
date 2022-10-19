@@ -7,4 +7,4 @@ app.register_blueprint(todoEndpoints)
 app.register_blueprint(todoCommentEndpoints)
 
 if __name__ == "__main__":
-    app.run(debug = True)
+    app.run(debug=True)

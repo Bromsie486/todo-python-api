@@ -4,6 +4,7 @@ import uuid
 import datetime
 import service.keywordFilterService as keywordFilterService
 
+
 def addCommentToTodoItem(input, todoItemID):
     if todoItemID is None:
         raise KeyError("todoItemID not found")
@@ -13,10 +14,15 @@ def addCommentToTodoItem(input, todoItemID):
     keywordFilterService.checkForBlackListedWords(description)
     for index, item in enumerate(todoStore.getTodos()):
         if item["id"] == todoItemID:
-            todoCommentItem = {"id": str(uuid.uuid4()), "description": description, "createdAt": datetime.datetime.now()}
+            todoCommentItem = {
+                "id": str(uuid.uuid4()),
+                "description": description,
+                "createdAt": datetime.datetime.now(),
+            }
             todoStore.addCommentToTodoItem(todoCommentItem, index)
             return
-    raise IdNotFoundException("Todo item with ID "+ todoItemID + " was not found.")
+    raise IdNotFoundException("Todo item with ID " + todoItemID + " was not found.")
+
 
 def deleteComment(commentID):
     for todoItemIndex, item in enumerate(todoStore.getTodos()):

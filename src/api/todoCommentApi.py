@@ -1,11 +1,14 @@
 from flask import Blueprint, request, Flask
 import json
 from api.exceptions.idNotFoundException import IdNotFoundException
-from api.exceptions.messageContainsBlackListedWordException import MessageContainsBlackListedWordException
+from api.exceptions.messageContainsBlackListedWordException import (
+    MessageContainsBlackListedWordException,
+)
 import service.todoCommentService as todoCommentService
 import service.keywordFilterService as keywordFilterService
 
-todoCommentEndpoints = Blueprint('todoCommentEndpoints', __name__)
+todoCommentEndpoints = Blueprint("todoCommentEndpoints", __name__)
+
 
 @todoCommentEndpoints.post("/todo/comment/<todoItemID>")
 def addTodoComment(todoItemID):
@@ -21,6 +24,7 @@ def addTodoComment(todoItemID):
         return str(ex), 404
     except MessageContainsBlackListedWordException as ex:
         return str(ex), 451
+
 
 @todoCommentEndpoints.delete("/todo/comment/<todoCommentItemID>")
 def deleteTodoComment(todoCommentItemID):
