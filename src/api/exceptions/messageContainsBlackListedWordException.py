@@ -1,0 +1,2 @@
+class MessageContainsBlackListedWordException(Exception):
+    pass
